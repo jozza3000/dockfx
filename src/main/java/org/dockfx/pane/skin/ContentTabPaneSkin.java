@@ -42,16 +42,8 @@ import javafx.scene.AccessibleAction;
 import javafx.scene.AccessibleAttribute;
 import javafx.scene.AccessibleRole;
 import javafx.scene.Node;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.SkinBase;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.control.TabPane.TabClosingPolicy;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -71,6 +63,7 @@ import com.sun.javafx.scene.traversal.Direction;
 import com.sun.javafx.scene.traversal.TraversalEngine;
 import com.sun.javafx.util.Utils;
 
+import org.dockfx.DockNode;
 import org.dockfx.pane.DockNodeTab;
 
 /**
@@ -433,6 +426,17 @@ public class ContentTabPaneSkin extends
 
   private void initializeTabListener()
   {
+
+
+    getSkinnable().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+      if (newValue != null) {
+        DockNodeTab tab = (DockNodeTab) getSkinnable().getTabs().get((Integer) newValue);
+        DockNode content = (DockNode) tab.getContent();
+        content.wasSeleceted();
+      }
+
+    });
+
     getSkinnable().getTabs()
                   .addListener((ListChangeListener<Tab>) c -> {
                     List<Tab> tabsToRemove = new ArrayList<>();

@@ -297,6 +297,14 @@ public class DockNode extends VBox implements EventHandler<MouseEvent>
     this(FXMLPath, null, null);
   }
 
+  public void wasSelected() {
+    // do nothing by default
+  }
+
+  public void titleBarPressed() {
+    // do nothing by default
+  }
+
   /**
    * Loads Node from fxml file located at FXMLPath and returns it.
    *

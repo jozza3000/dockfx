@@ -43,7 +43,6 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-import com.sun.javafx.stage.StageHelper;
 import org.dockfx.util.StageUtils;
 
 /**
@@ -398,6 +397,10 @@ public class DockTitleBar extends HBox
   {
     if (event.getEventType() == MouseEvent.MOUSE_PRESSED)
     {
+      if (event.getClickCount() == 1) {
+        dockNode.titleBarPressed();
+      }
+
       if (dockNode.isFloating() && event.getClickCount() == 2
           && event.getButton() == MouseButton.PRIMARY)
       {
