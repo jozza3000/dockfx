@@ -432,7 +432,7 @@ public class ContentTabPaneSkin extends
       if (newValue != null) {
         DockNodeTab tab = (DockNodeTab) getSkinnable().getTabs().get((Integer) newValue);
         DockNode content = (DockNode) tab.getContent();
-        content.wasSeleceted();
+        content.wasSelected();
       }
 
     });
