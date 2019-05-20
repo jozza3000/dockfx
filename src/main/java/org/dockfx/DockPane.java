@@ -711,6 +711,9 @@ public class DockPane extends StackPane
 
           contentParent.set((Node) pane, sibling);
           ((DockNode) sibling).tabbedProperty().setValue(false);
+
+          ((DockNode) sibling).wasSelectedBecauseTabRemoved();
+
         }
       }
     }

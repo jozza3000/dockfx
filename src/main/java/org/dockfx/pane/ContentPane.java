@@ -114,4 +114,25 @@ public interface ContentPane
    *          the pane
    */
   void setContentParent(ContentPane pane);
+
+  default String prettyPrint() {
+      StringBuilder sb = new StringBuilder();
+      prettyPrint(sb, 0);
+      return sb.toString();
+  }
+
+  default void prettyPrint(StringBuilder sb,int indent) {
+
+    for (Node node : getChildrenList()) {
+        if (node instanceof ContentPane) {
+            sb.append("\t".repeat(indent)).append(((ContentPane) node).getType());
+            ((ContentPane) node).prettyPrint(sb, indent + 1);
+        } else {
+            sb.append(("\t".repeat(indent)));
+            sb.append(node);
+        }
+
+    }
+
+  }
 }

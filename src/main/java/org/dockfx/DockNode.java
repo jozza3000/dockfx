@@ -20,12 +20,7 @@
 
 package org.dockfx;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.css.PseudoClass;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -298,6 +293,10 @@ public class DockNode extends VBox implements EventHandler<MouseEvent>
   }
 
   public void wasSelected() {
+    // do nothing by default
+  }
+
+  public void wasSelectedBecauseTabRemoved() {
     // do nothing by default
   }
 
@@ -1207,18 +1206,25 @@ public class DockNode extends VBox implements EventHandler<MouseEvent>
     }
   }
 
-  private DockNodeTab dockNodeTab;
+  private ReadOnlyObjectWrapper<DockNodeTab> dockNodeTabProperty = new ReadOnlyObjectWrapper<>();
 
   public void setNodeTab(DockNodeTab nodeTab)
   {
-    this.dockNodeTab = nodeTab;
+    dockNodeTabProperty.set(nodeTab);
   }
 
   public void focus()
   {
     if (tabbedProperty().get())
-      dockNodeTab.select();
+      dockNodeTabProperty.get().select();
   }
+
+
+  public ReadOnlyObjectProperty<DockNodeTab> dockNodeTabProperty() {
+    return dockNodeTabProperty.getReadOnlyProperty();
+  }
+
+
 
   /**
    * The last position of the mouse that was within the minimum layout bounds.
