@@ -4,7 +4,7 @@
     http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dockfx</groupId>
-    <artifactId>DockFX</artifactId>
+    <artifactId>dockfx</artifactId>
     <packaging>jar</packaging>
     <version>0.1.16</version>
     <name>DockFX</name>
@@ -88,14 +88,19 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
         </plugins>
     </build>
 
     <distributionManagement>
         <repository>
-            <id>bintray-clearcontrol-ClearControl</id>
-            <name>clearcontrol-ClearControl</name>
-            <url>https://api.bintray.com/maven/clearcontrol/ClearControl/DockFX/;publish=1</url>
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/jozza3000/dockfx</url>
         </repository>
     </distributionManagement>
 
